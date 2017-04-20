@@ -1,4 +1,4 @@
-function [s, crest] = multisine(N_samples, N_freq, f_base, f_samp, phase_type, eplot)
+function [s, crest] = multisine(N_samples, kmin, kmax, fres, phase_type, eplot)
 %{
 Generates a multisine signal of N_samples. It sweeps a number of
 frequencies equal to N_freq, all multiples of f_base.
@@ -10,26 +10,28 @@ phase or 'schroder' for a schroder phase.
 %}
 
 s = zeros(1, N_samples);
-t = 0:1/f_samp:(N_samples-1)/f_samp;    % time vector 
+fs = fres*N_samples; %biggest frequency
+Ts = 1/fs;
+t = 0:Ts:(N_samples-1)*Ts; %N samples
 
 switch phase_type
 
     case 'constant' % Constant phase fixed to 0
     
-    for i = 1:N_freq
-        s = s + sin(2*pi*f_base*i*t);
+    for k = kmin:fres:kmax
+        s = s + sin(2*pi*fres*k*t + pi/2);
     end
         
     case 'random'   % Random phase, uniformly distributed between 0 and 2pi
         
-    for i = 1:N_freq
-        s = s + sin(2*pi*f_base*i*t + 2*pi*rand(1));
+    for k = kmin:fres:kmax
+        s = s + sin(2*pi*fres*k*t + 2*pi*rand(1));
     end
         
     case 'schroder' % Schroder's formula
     
-    for i = 1:N_freq
-        s = s + sin(2*pi*f_base*i*t + pi*i*(i+1)/N_freq);
+    for k = kmin:fres:kmax
+        s = s + sin(2*pi*fres*k*t + pi*k*(k+1)/kmax);
     end
     
     otherwise
