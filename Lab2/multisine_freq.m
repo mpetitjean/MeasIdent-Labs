@@ -29,7 +29,7 @@ s = fftshift(ifft(ifftshift(spectrum)));
 % plots
 figure;
 subplot(1,2,1)
-plot(-N/2+1:N/2-1,abs(spectrum),'-x')
+stem(abs(spectrum))
 title('Frequency content')
 xlabel('Frequency (bins)')
 ylabel('Amplitude')

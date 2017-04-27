@@ -1,4 +1,4 @@
-function H = dftAveraging(u, y)
+function H = frfAveraging(u, y)
 % Method 3 for spectral averaging
 % fft then mean of H
 
