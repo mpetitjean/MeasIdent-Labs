@@ -16,14 +16,15 @@ bin = round(fmin/fres)+1: round(fmax/fres);
 bin = bin(1:2:end);
 spectrum = zeros(N,1);
 
-count = 1;
-for i=1:F:length(bin)-F
-    r = randi([0 F-1]);      % random number between 0 and F-1
-    ind(count) = i+r; 
-    count = count + 1;
-end
-
-bin = bin(ind);
+% count = 1;
+% for i=1:F:length(bin)-F
+%     r = randi([0 F-1]);      % random number between 0 and F-1
+%     ind(count) = i+r; 
+%     count = count + 1;
+% end
+% 
+% bin = bin(ind);
+bin(randi([0 F-1],1,length(bin)/F) + (1:F:length(bin)))= [];
 
 % bin = bin(randi([0 2],1,round(length(bin)/F))+[1:F:length(bin)]);
 
