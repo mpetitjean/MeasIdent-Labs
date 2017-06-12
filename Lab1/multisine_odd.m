@@ -1,6 +1,6 @@
 function [s, crest] = multisine_odd(N_samples, N_freq, f_base, f_samp, phase_type, eplot)
 %{
-Generates a multisine signal of N_samples, with inly odd bin numbers excited.
+Generates a multisine signal of N_samples, with only odd bin numbers excited.
 It sweeps a number of frequencies equal to N_freq, all multiples of f_base.
 The crest factor is also computed and returned.
 
